@@ -1,13 +1,11 @@
 from matriz import mapa
-from interface import criar_interface
-from agente import missao  # Aqui deve ser o nome correto da função
+from interface import criar_interface  # Certifique-se de que a importação está correta
 
 def main():
-    # Iniciar a missão
-    caminho, custo_total, amigos_convidados = missao(mapa)  # Recebe o caminho, custo e amigos
-
-    # Criar a interface gráfica com o caminho, amigos e custo
-    criar_interface(mapa, caminho, amigos_convidados, custo_total)
+    criar_interface(mapa)  # Passe apenas o mapa para a interface
 
 if __name__ == "__main__":
-    main()
+    main()  # Chama a interface ao rodar o script
+
+#perfeito agora eu nao quero que na tela inicial aparece pra selecionar o algoritomo quero so o botao iniciar
+
