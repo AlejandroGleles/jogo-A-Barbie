@@ -102,7 +102,7 @@ def sma_star(inicio, destino, mapa, max_depth=10):
     return [], float('inf')  # Caminho não encontrado
 
 def missao(mapa, algoritmo):
-    casa_barbie = (22, 18)  # A posição inicial da Barbie ajustada para começar em 0
+    casa_barbie = (22, 18)  # A posição inicial da Barbie
     todos_amigos = list(amigos.keys())  # Lista com todos os amigos
     amigos_sorteados = random.sample(todos_amigos, 3)  # Sorteia 3 amigos aleatoriamente
     amigos_visitados = []  # Lista para armazenar os amigos sorteados que foram encontrados
@@ -110,6 +110,7 @@ def missao(mapa, algoritmo):
 
     custo_total = 0
     caminho_total = []
+    detalhes_caminho = []  # Para armazenar detalhes do caminho
 
     print(f"Barbie inicia na posição {casa_barbie}.")
     print(f"Amigos sorteados: {amigos_sorteados}\n")
@@ -139,7 +140,7 @@ def missao(mapa, algoritmo):
         if melhor_amigo:
             caminho_total.extend(melhor_caminho)  # Adiciona o caminho à lista total
             custo_total += menor_custo
-            print(f"De {casa_barbie} até {melhor_amigo} na posição {amigos[melhor_amigo]}, custo: {menor_custo}")
+            detalhes_caminho.append(f"De {casa_barbie} até {melhor_amigo} na posição {amigos[melhor_amigo]}, custo: {menor_custo}")  # Adiciona detalhes do caminho
 
             casa_barbie = amigos[melhor_amigo]  # Atualiza a posição da Barbie
             amigos_restantes.remove(melhor_amigo)  # Remove o amigo da lista de amigos restantes
@@ -147,7 +148,7 @@ def missao(mapa, algoritmo):
             # Se o amigo visitado está entre os sorteados
             if melhor_amigo in amigos_sorteados:
                 amigos_visitados.append(melhor_amigo)  # Adiciona o amigo sorteado aos visitados
-                print(f"{melhor_amigo} foi encontrado! Amigo {len(amigos_visitados)}/3.")
+                detalhes_caminho.append(f"{melhor_amigo} foi encontrado! Amigo {len(amigos_visitados)}/3.")  # Adiciona detalhes sobre o amigo encontrado
 
         else:
             print(f"Não foi possível encontrar um caminho para algum amigo.")
@@ -161,4 +162,4 @@ def missao(mapa, algoritmo):
 
     tempo_execucao = time.time() - start_time  # Cálculo do tempo total de execução
 
-    return caminho_total, amigos_visitados, custo_total, tempo_execucao  # Retorna os resultados
+    return caminho_total, amigos_visitados, custo_total, tempo_execucao, detalhes_caminho  # Retorna os resultados
