@@ -7,5 +7,5 @@ def main():
 if __name__ == "__main__":
     main()  # Chama a interface ao rodar o script
 
-#perfeito agora eu nao quero que na tela inicial aparece pra selecionar o algoritomo quero so o botao iniciar
+
 
